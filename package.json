@@ -1,0 +1,24 @@
+{
+  "name": "human-predictor",
+  "version": "1.0.0",
+  "description": "Predict humans in RPS and later in random number generation.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Zzza38/humanPredictor.git"
+  },
+  "keywords": [
+    "AI",
+    "ML"
+  ],
+  "author": "Zzza38",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Zzza38/humanPredictor/issues"
+  },
+  "homepage": "https://github.com/Zzza38/humanPredictor#readme"
+}
