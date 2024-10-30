@@ -1,5 +1,7 @@
 const readline = require('readline');
 const { predictRPS, updateData } = require('./ai'); // Assuming 'ai.js' contains your AI logic
+const { loadBrowser, closeBrowser, runCode } = require('./renderer');
+
 
 const gameTable = {
     "rock": "scissors",
@@ -29,13 +31,21 @@ function isValid(input) {
     const validMoves = ['Rock', 'Paper', 'Scissors'];
     return validMoves.includes(input);
 }
-
+console.oldLog = console.log
+console.log = async (message) => {
+    runCode(`
+    let elem = document.createElement('p').innerText = message
+    document.body.append(elem)
+    `)
+    console.oldLog(message)
+};
 // Main function to run the game
 async function main() {
+    loadBrowser();
     let input;
     let lastMove = 'Rock'; // Starting last move
     while (true) {
-        input = await prompt('Enter your move (Rock, Paper, Scissors) -> "stop" to stop: ').toLowerCase();
+        input = await String(prompt('Enter your move (Rock, Paper, Scissors) -> "stop" to stop: ')).toLowerCase();
         if (input === 'stop') {
             console.log('Game stopped.');
             break;
@@ -44,7 +54,7 @@ async function main() {
             console.log('Invalid move! Please enter Rock, Paper, or Scissors.');
             continue; // Ask for input again
         }
-        
+
         let aiPrediction = predictRPS(lastMove);
         console.log(`AI Move: ${gameTable[aiPrediction]}`);
         console.log(`Your move: ${input}`);
@@ -63,6 +73,7 @@ async function main() {
 
     // Close the readline interface
     rl.close();
+    closeBrowser();
 }
 
 // Start the game

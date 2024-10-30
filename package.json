@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/Zzza38/humanPredictor/issues"
   },
-  "homepage": "https://github.com/Zzza38/humanPredictor#readme"
+  "homepage": "https://github.com/Zzza38/humanPredictor#readme",
+  "dependencies": {
+    "puppeteer": "^23.6.1"
+  }
 }
